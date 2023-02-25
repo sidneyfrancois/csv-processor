@@ -76,3 +76,20 @@ public class TimeToDateTimeConverter : DefaultTypeConverter
         return timeConverted;
     }
 }
+
+public class LunchIntervalToDateTimeConverter : DefaultTypeConverter
+{
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+    {
+        text = Regex.Replace(text, " * - *", "-");
+        string[] timeInterval = text.Split('-');
+
+        var lunchEntryTime = DateTime.ParseExact(row[3] + " " + timeInterval[0], "dd/MM/yyyy HH:mm",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
+        var lunchExitTime = DateTime.ParseExact(row[3] + " " + timeInterval[1], "dd/MM/yyyy HH:mm",
+                                       System.Globalization.CultureInfo.InvariantCulture);    
+
+        return new List<DateTime> {lunchEntryTime, lunchExitTime};
+    }
+}
