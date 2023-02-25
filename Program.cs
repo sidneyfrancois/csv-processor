@@ -6,7 +6,7 @@ using CsvHelper.TypeConversion;
 
 public class CSVProcessing
 {
-    public void Reading(string filename)
+    public void CsvMapAndProcessing(string filename)
     {
         var configCsvHelper = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
