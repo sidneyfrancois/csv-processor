@@ -21,6 +21,8 @@ public class CSVProcessing
         using (var csv = new CsvReader(reader, configCsvHelper))
         {
             csv.Context.RegisterClassMap<EmployeeCsvMap>();
+            employees = csv.GetRecords<Employee>().ToList();
+            Console.WriteLine("Finished file: " + filename);
         }
     }
 }
