@@ -20,7 +20,7 @@ public class CSVProcessing
         using (var reader = new StreamReader(filename))
         using (var csv = new CsvReader(reader, configCsvHelper))
         {
-            
+            csv.Context.RegisterClassMap<EmployeeCsvMap>();
         }
     }
 }
