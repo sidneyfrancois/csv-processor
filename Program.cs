@@ -40,7 +40,7 @@ public sealed class EmployeeCsvMap : ClassMap<Employee>
         Map(e => e.Date).Name("Data").TypeConverter<DateToDateTimeConverter>();
         Map(e => e.EntryTime).Name("Entrada").TypeConverter<TimeToDateTimeConverter>();
         Map(e => e.ExitTime).Name("Sa�da").TypeConverter<TimeToDateTimeConverter>();
-        Map(e => e.LunchTime).Name("Almo�o");
+        Map(e => e.LunchTime).Name("Almo�o").TypeConverter<LunchIntervalToDateTimeConverter>();
     }
 }
 
