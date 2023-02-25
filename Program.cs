@@ -22,7 +22,7 @@ Console.WriteLine($"Memory Used: {Process.GetCurrentProcess().WorkingSet64 / 102
 
 public class CSVProcessing
 {
-    public void CsvMapAndProcessing(string filename)
+    public async Task CsvMapAndProcessing(string filename)
     {
         var configCsvHelper = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
@@ -36,8 +36,17 @@ public class CSVProcessing
         using (var reader = new StreamReader(filename))
         using (var csv = new CsvReader(reader, configCsvHelper))
         {
+            await csv.ReadAsync();
+            csv.ReadHeader();
+
             csv.Context.RegisterClassMap<EmployeeCsvMap>();
-            employees = csv.GetRecords<Employee>().ToList();
+
+            while (await csv.ReadAsync())
+            {
+                var employee = csv.GetRecord<Employee>();
+                employees.Add(employee);
+            }
+            
             Console.WriteLine("Finished file: " + filename);
         }
     }
