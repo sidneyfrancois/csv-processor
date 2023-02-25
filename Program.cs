@@ -27,3 +27,16 @@ public class Employee
     public List<DateTime> LunchTime { get; set; }
 }
 
+public sealed class EmployeeCsvMap : ClassMap<Employee>
+{
+    public EmployeeCsvMap()
+    {
+        Map(e => e.Id).Name("C�digo");
+        Map(e => e.Name).Name("Name");
+        Map(e => e.HourValue).Name("Valor hora");
+        Map(e => e.Date).Name("Data");
+        Map(e => e.EntryTime).Name("Entrada");
+        Map(e => e.ExitTime).Name("Sa�da");
+        Map(e => e.LunchTime).Name("Almo�o");
+    }
+}
