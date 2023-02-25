@@ -18,7 +18,7 @@ Este projet teve como prioridade:
 - Organização de commits (seguindo o padrão "conventional commits")
 
 O que foi finalizado até o momento:
-- [ ] Processamento e mapeamento dos arquivos CSV
+- [x] Processamento e mapeamento dos arquivos CSV
 - [ ] Geração do arquivo JSON com base nos dados do arquivo CSV
 - [ ] Aplicação de paralelismo
 - [ ] Uso de assincronismo (I/O blocking)
