@@ -11,7 +11,10 @@ var sw = new Stopwatch();
 string[] directoryFiles = Directory.GetFiles("TestInput");
 
 sw.Start();
-
+await Parallel.ForEachAsync(directoryFiles, async (file, ct) =>
+{
+    await mainProcessing.CsvMapAndProcessing(file);
+});
 sw.Stop();
 
 Console.WriteLine($"\nTime: {sw.ElapsedMilliseconds} ms");
