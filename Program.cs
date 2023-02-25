@@ -1,5 +1,8 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
+using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 public class CSVProcessing
 {
@@ -38,5 +41,16 @@ public sealed class EmployeeCsvMap : ClassMap<Employee>
         Map(e => e.EntryTime).Name("Entrada");
         Map(e => e.ExitTime).Name("Sa�da");
         Map(e => e.LunchTime).Name("Almo�o");
+    }
+}
+
+public class CurrencyValueToDoubleConverter : DefaultTypeConverter
+{
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+    {
+        text = Regex.Replace(text, " *,*", ",");
+        var currencyConverted = Double.Parse(text, System.Globalization.NumberStyles.Currency);
+
+        return currencyConverted;
     }
 }
