@@ -10,6 +10,13 @@ var sw = new Stopwatch();
 
 string[] directoryFiles = Directory.GetFiles("TestInput");
 
+sw.Start();
+
+sw.Stop();
+
+Console.WriteLine($"\nTime: {sw.ElapsedMilliseconds} ms");
+Console.WriteLine($"Memory Used: {Process.GetCurrentProcess().WorkingSet64 / 1024 / 1024} mb");
+
 public class CSVProcessing
 {
     public void CsvMapAndProcessing(string filename)
