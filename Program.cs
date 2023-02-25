@@ -54,3 +54,14 @@ public class CurrencyValueToDoubleConverter : DefaultTypeConverter
         return currencyConverted;
     }
 }
+
+public class DateToDateTimeConverter : DefaultTypeConverter
+{
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+    {
+        DateTime dateConverted = DateTime.ParseExact(text, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
+        return dateConverted;
+    }
+}
