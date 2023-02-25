@@ -8,6 +8,8 @@ using System.Diagnostics;
 var mainProcessing = new CSVProcessing();
 var sw = new Stopwatch();
 
+string[] directoryFiles = Directory.GetFiles("TestInput");
+
 public class CSVProcessing
 {
     public void CsvMapAndProcessing(string filename)
