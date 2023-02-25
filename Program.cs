@@ -3,6 +3,10 @@ using System.Text.RegularExpressions;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using System.Diagnostics;
+
+var mainProcessing = new CSVProcessing();
+var sw = new Stopwatch();
 
 public class CSVProcessing
 {
