@@ -37,7 +37,7 @@ public sealed class EmployeeCsvMap : ClassMap<Employee>
         Map(e => e.Id).Name("C�digo");
         Map(e => e.Name).Name("Name");
         Map(e => e.HourValue).Name("Valor hora").TypeConverter<CurrencyValueToDoubleConverter>();
-        Map(e => e.Date).Name("Data");
+        Map(e => e.Date).Name("Data").TypeConverter<DateToDateTimeConverter>();
         Map(e => e.EntryTime).Name("Entrada");
         Map(e => e.ExitTime).Name("Sa�da");
         Map(e => e.LunchTime).Name("Almo�o");
