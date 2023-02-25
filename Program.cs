@@ -81,7 +81,7 @@ public class CurrencyValueToDoubleConverter : DefaultTypeConverter
 {
     public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
     {
-        text = Regex.Replace(text, " *,*", ",");
+        text = Regex.Replace(text, " *, *", ",");
         var currencyConverted = Double.Parse(text, System.Globalization.NumberStyles.Currency);
 
         return currencyConverted;
