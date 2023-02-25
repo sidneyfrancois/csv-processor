@@ -15,7 +15,13 @@ public class CSVProcessing
             IgnoreBlankLines = true,
         };
 
+        var employees = new List<Employee>();
 
+        using (var reader = new StreamReader(filename))
+        using (var csv = new CsvReader(reader, configCsvHelper))
+        {
+            
+        }
     }
 }
 
