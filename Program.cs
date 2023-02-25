@@ -22,7 +22,8 @@ public class Employee
     public string Name { get; set; }
     public double HourValue { get; set; }
     public DateTime Date { get; set; }
-    public DateTime EntryDate { get; set; }
+    public DateTime EntryTime { get; set; }
     public DateTime ExitTime { get; set; }
     public List<DateTime> LunchTime { get; set; }
 }
+
