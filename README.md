@@ -1,3 +1,9 @@
+![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
+![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
+
+![.Vscode](https://img.shields.io/badge/Made%20with-VSCode-1f425f.svg)
+
+
 # Projeto de teste técnico (Auvo Tecnologia) :computer:
 
 Este projet teve como prioridade:
@@ -6,7 +12,6 @@ Este projet teve como prioridade:
 - Busca de maior performance
 - Demonstrar domínio intermediário na linguagem (C#)
 - Organização de commits (seguindo o padrão "conventional commits")
-- Preocupação em 
 
 O que foi finalizado até o momento:
 - [ ] Processamento e mapeamento dos arquivos CSV
