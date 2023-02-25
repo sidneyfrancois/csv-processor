@@ -65,3 +65,14 @@ public class DateToDateTimeConverter : DefaultTypeConverter
         return dateConverted;
     }
 }
+
+public class TimeToDateTimeConverter : DefaultTypeConverter
+{
+    public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+    {
+        DateTime timeConverted = DateTime.ParseExact(row[3] + " " + text, "dd/MM/yyyy HH:mm:ss",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
+        return timeConverted;
+    }
+}
