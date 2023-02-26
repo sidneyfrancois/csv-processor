@@ -129,6 +129,16 @@ public class UtilsProcessing
         return total;
     }
 
+    public int GetTotalExtraDays(List<Employee> employeeReport)
+    {
+        var entryExtraDays = GetExtraHoursBeforeEntry(employeeReport);
+        var exitExtraDays = GetExtraHoursAfterExit(employeeReport);
+
+        var totalExtraDays = entryExtraDays.Days + exitExtraDays.Days;
+
+        return totalExtraDays; 
+    }
+
     public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
     {
         var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
