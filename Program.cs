@@ -120,6 +120,13 @@ public class UtilsProcessing
         return extraDays.Count();
     }
 
+    public void GetTotalDaysOfWork(List<Employee> employeeReport)
+    {
+        var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
+                                            current += (it.ExitTime - it.EntryTime)
+                                        );
+    }
+
     public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
     {
         var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
