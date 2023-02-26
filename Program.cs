@@ -120,7 +120,7 @@ public class UtilsProcessing
         return extraDays.Count();
     }
 
-    public void GetExtraHoursBeforeEntry(List<Employee> employeeReport)
+    public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
     {
         var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
                                         {
@@ -132,9 +132,11 @@ public class UtilsProcessing
 
                                             return current += (entryTimeOfficial - it.EntryTime);
                                         });
+        
+        return total;
     }
 
-    public void GetExtraHoursAfterExit(List<Employee> employeeReport)
+    public TimeSpan GetExtraHoursAfterExit(List<Employee> employeeReport)
     {
         var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
                                         {
@@ -146,6 +148,8 @@ public class UtilsProcessing
 
                                             return current += (it.ExitTime - exitTimeOfficial);
                                         });
+
+        return total;
     }
 }
 
