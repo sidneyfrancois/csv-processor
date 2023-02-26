@@ -94,6 +94,15 @@ public class UtilsProcessing
                                  dt.DayOfWeek == DayOfWeek.Saturday)
                     .ToList();
     }
+    public List<List<Employee>> GetListOfEmployesById(List<Employee> employees)
+    {
+        var groupedEmployeeList = employees
+                            .GroupBy(u => u.Id)
+                            .Select(grp => grp.ToList())
+                            .ToList();
+        
+        return groupedEmployeeList;
+    }
 }
 
 public sealed class EmployeeCsvMap : ClassMap<Employee>
