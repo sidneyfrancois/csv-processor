@@ -86,7 +86,7 @@ public class UtilsProcessing
                     .ToList();
     }
 
-    public List<DateTime> GetWeekendsDays(int year, int month)
+    public List<DateTime> GetWeekendsDays(int month, int year)
     {
         return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
                     .Select(day => new DateTime(year, month, day))
@@ -110,6 +110,14 @@ public class UtilsProcessing
         var missingDates = weekDaysOfMonth.Select(x=>x.Date).Except(employeeReport.Select(y=>y.Date));
 
         return missingDates.Count();
+    }
+
+    public int GetExtraDays(List<Employee> employeeReport)
+    {
+        List<DateTime> weekendDaysOfMonth = GetWeekendsDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
+        var extraDays = weekendDaysOfMonth.Select(x=>x.Date).Intersect(employeeReport.Select(y=>y.Date));
+
+        return extraDays.Count();
     }
 }
 
