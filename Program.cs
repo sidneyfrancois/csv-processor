@@ -8,7 +8,7 @@ using System.Diagnostics;
 var mainProcessing = new CSVProcessing();
 var sw = new Stopwatch();
 
-string[] directoryFiles = Directory.GetFiles("TestInput");
+string[] directoryFiles = Directory.GetFiles("TestInputT");
 
 sw.Start();
 await Parallel.ForEachAsync(directoryFiles, async (file, ct) =>
@@ -65,7 +65,7 @@ public class Employee
 
 public class EmployeeJson
 {
-    public int Name { get; set; }
+    public string Name { get; set; }
     public int Id { get; set; }
     public double TotalRevenue { get; set; }
     public DateTime ExtraHours { get; set; }
