@@ -46,7 +46,7 @@ public class CSVProcessing
                 var employee = csv.GetRecord<Employee>();
                 employees.Add(employee);
             }
-            
+
             Console.WriteLine("Finished file: " + filename);
         }
     }
@@ -118,6 +118,34 @@ public class UtilsProcessing
         var extraDays = weekendDaysOfMonth.Select(x=>x.Date).Intersect(employeeReport.Select(y=>y.Date));
 
         return extraDays.Count();
+    }
+
+    public void GetExtraHoursBeforeEntry(List<Employee> employeeReport)
+    {
+        var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
+                                        {
+                                            DateTime entryTimeOfficial = new DateTime(
+                                                                it.Date.Year,
+                                                                it.Date.Month, 
+                                                                it.Date.Day, 
+                                                                8, 0, 0);
+
+                                            return current += (entryTimeOfficial - it.EntryTime);
+                                        });
+    }
+
+    public void GetExtraHoursAfterExit(List<Employee> employeeReport)
+    {
+        var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
+                                        {
+                                            DateTime exitTimeOfficial = new DateTime(
+                                                                it.Date.Year,
+                                                                it.Date.Month, 
+                                                                it.Date.Day, 
+                                                                18, 0, 0);
+
+                                            return current += (it.ExitTime - exitTimeOfficial);
+                                        });
     }
 }
 
