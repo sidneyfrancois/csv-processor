@@ -63,6 +63,18 @@ public class Employee
     public List<DateTime> LunchTime { get; set; }
 }
 
+public class EmployeeJson
+{
+    public int Name { get; set; }
+    public int Id { get; set; }
+    public double TotalRevenue { get; set; }
+    public DateTime ExtraHours { get; set; }
+    public DateTime OwedHours { get; set; }
+    public int MissingDays { get; set; }
+    public int ExtraDays { get; set; }
+    public int TotalDaysOfWork { get; set; }
+}
+
 public sealed class EmployeeCsvMap : ClassMap<Employee>
 {
     public EmployeeCsvMap()
