@@ -75,6 +75,27 @@ public class EmployeeJson
     public int TotalDaysOfWork { get; set; }
 }
 
+public class UtilsProcessing
+{
+    public List<DateTime> GetWeekDays(int year, int month)
+    {
+        return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
+                    .Select(day => new DateTime(year, month, day))
+                    .Where(dt => dt.DayOfWeek != DayOfWeek.Sunday &&
+                                 dt.DayOfWeek != DayOfWeek.Saturday)
+                    .ToList();
+    }
+
+    public List<DateTime> GetWeekendsDays(int year, int month)
+    {
+        return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
+                    .Select(day => new DateTime(year, month, day))
+                    .Where(dt => dt.DayOfWeek == DayOfWeek.Sunday ||
+                                 dt.DayOfWeek == DayOfWeek.Saturday)
+                    .ToList();
+    }
+}
+
 public sealed class EmployeeCsvMap : ClassMap<Employee>
 {
     public EmployeeCsvMap()
