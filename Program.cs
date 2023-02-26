@@ -77,7 +77,7 @@ public class EmployeeJson
 
 public class UtilsProcessing
 {
-    public List<DateTime> GetWeekDays(int year, int month)
+    public List<DateTime> GetWeekDays(int month, int year)
     {
         return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
                     .Select(day => new DateTime(year, month, day))
@@ -102,6 +102,14 @@ public class UtilsProcessing
                             .ToList();
         
         return groupedEmployeeList;
+    }
+
+    public int GetMissingDays(List<Employee> employeeReport)
+    {
+        List<DateTime> weekDaysOfMonth = GetWeekDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
+        var missingDates = weekDaysOfMonth.Select(x=>x.Date).Except(employeeReport.Select(y=>y.Date));
+
+        return missingDates.Count();
     }
 }
 
