@@ -150,6 +150,17 @@ public class UtilsProcessing
         return weekWorkingDaysReport;
     }
 
+    public List<Employee> GetWeekendWorkingDays(List<Employee> employeeReport)
+    {
+        var weekendDays = GetWeekendsDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
+
+        var weekendWorkingDaysReport = employeeReport
+            .Where(x => weekendDays.Any(y => y.Date == x.Date))
+            .ToList();
+
+        return weekendWorkingDaysReport;
+    }
+
     public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
     {
         var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
