@@ -188,6 +188,16 @@ public class UtilsProcessing
 
         return total;
     }
+
+    public TimeSpan GetExtraHoursOnWeekendDays(List<Employee> empleeReport)
+    {
+        var weekendWorkingDaysReport = GetWeekendWorkingDays(empleeReport);
+
+        var total= weekendWorkingDaysReport.Aggregate(TimeSpan.Zero, (current, it) => 
+                                            current += (it.ExitTime - it.EntryTime));
+
+        return total;
+    }
 }
 
 public sealed class EmployeeCsvMap : ClassMap<Employee>
