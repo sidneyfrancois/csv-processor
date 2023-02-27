@@ -198,6 +198,14 @@ public class UtilsProcessing
 
         return total;
     }
+
+    public TimeSpan GetTotalLunchHours(List<Employee> employeeReport)
+    {
+        var totalLunchTime = employeeReport.Aggregate(TimeSpan.Zero, (current, it) =>
+                                            current += (it.LunchTime[1] - it.LunchTime[0]));
+
+        return totalLunchTime;
+    }
 }
 
 public sealed class EmployeeCsvMap : ClassMap<Employee>
