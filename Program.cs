@@ -163,7 +163,9 @@ public class UtilsProcessing
 
     public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
     {
-        var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
+        var weekWorkingDaysReport = GetWeekWorkingDays(employeeReport);
+        
+        var total= weekWorkingDaysReport.Aggregate(TimeSpan.Zero, (current, it) => 
                                         {
                                             DateTime entryTimeOfficial = new DateTime(
                                                                 it.Date.Year,
@@ -179,7 +181,9 @@ public class UtilsProcessing
 
     public TimeSpan GetExtraHoursAfterExit(List<Employee> employeeReport)
     {
-        var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
+        var weekWorkingDaysReport = GetWeekWorkingDays(employeeReport);
+
+        var total= weekWorkingDaysReport.Aggregate(TimeSpan.Zero, (current, it) => 
                                         {
                                             DateTime exitTimeOfficial = new DateTime(
                                                                 it.Date.Year,
