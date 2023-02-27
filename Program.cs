@@ -139,6 +139,17 @@ public class UtilsProcessing
         return totalExtraHours; 
     }
 
+    public List<Employee> GetWeekWorkingDays(List<Employee> employeeReport)
+    {
+        var weekDays = GetWeekDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
+
+        var weekWorkingDaysReport = employeeReport
+            .Where(x => weekDays.Any(y => y.Date == x.Date))
+            .ToList();
+
+        return weekWorkingDaysReport;
+    }
+
     public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
     {
         var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
