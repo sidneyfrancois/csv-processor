@@ -129,14 +129,14 @@ public class UtilsProcessing
         return total;
     }
 
-    public int GetTotalExtraDays(List<Employee> employeeReport)
+    public TimeSpan GetTotalExtraHours(List<Employee> employeeReport)
     {
         var entryExtraDays = GetExtraHoursBeforeEntry(employeeReport);
         var exitExtraDays = GetExtraHoursAfterExit(employeeReport);
 
-        var totalExtraDays = entryExtraDays.Days + exitExtraDays.Days;
+        var totalExtraHours = entryExtraDays + exitExtraDays;
 
-        return totalExtraDays; 
+        return totalExtraHours; 
     }
 
     public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
