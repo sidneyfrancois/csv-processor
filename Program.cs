@@ -112,14 +112,6 @@ public class UtilsProcessing
         return missingDates.Count();
     }
 
-    public int GetExtraDays(List<Employee> employeeReport)
-    {
-        List<DateTime> weekendDaysOfMonth = GetWeekendsDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
-        var extraDays = weekendDaysOfMonth.Select(x=>x.Date).Intersect(employeeReport.Select(y=>y.Date));
-
-        return extraDays.Count();
-    }
-
     public TimeSpan GetTotalDaysOfWork(List<Employee> employeeReport)
     {
         var total= employeeReport.Aggregate(TimeSpan.Zero, (current, it) => 
