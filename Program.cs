@@ -131,6 +131,16 @@ public class UtilsProcessing
         return totalExtraHours; 
     }
 
+    public TimeSpan GetTotalOwedHours(List<Employee> employeeReport)
+    {
+        var entryOwedDays = GetOwedHoursAfterEntry(employeeReport);
+        var exitOwedDays = GetOwedHoursBegoreExit(employeeReport);
+
+        var totalOwedHours = entryOwedDays + exitOwedDays;
+
+        return totalOwedHours;
+    }
+
     public TimeSpan GetTotalWorkingHours(List<Employee> employeeReport)
     {
         var weekWorkingDaysReport = GetWeekWorkingDays(employeeReport);
