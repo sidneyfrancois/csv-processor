@@ -104,6 +104,14 @@ public class UtilsProcessing
         return groupedEmployeeList;
     }
 
+    public double GetTotalRevenue(List<Employee> employeeReport)
+    {
+        var totalHoursOfWork = GetTotalDaysOfWork(employeeReport).TotalHours;
+        var totalRevenue = totalHoursOfWork * employeeReport[0].HourValue;
+
+        return totalRevenue;
+    }
+
     public TimeSpan GetMissingDays(List<Employee> employeeReport)
     {
         List<DateTime> weekDaysOfMonth = GetWeekDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
