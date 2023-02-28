@@ -183,7 +183,10 @@ public class UtilsProcessing
                                                                 it.Date.Day, 
                                                                 8, 0, 0);
 
-                                            return current += (it.EntryTime - entryTimeOfficial);
+                                            if (it.EntryTime > entryTimeOfficial)
+                                                return current += (it.EntryTime - entryTimeOfficial);
+                                            else
+                                                return current;
                                         });
         
         return total;
@@ -201,7 +204,10 @@ public class UtilsProcessing
                                                                 it.Date.Day, 
                                                                 18, 0, 0);
 
-                                            return current += (exitTimeOfficial - it.ExitTime);
+                                            if (it.ExitTime < exitTimeOfficial)
+                                                return current += (exitTimeOfficial - it.ExitTime);
+                                            else
+                                                return current;
                                         });
 
         return total;
@@ -218,8 +224,10 @@ public class UtilsProcessing
                                                                 it.Date.Month, 
                                                                 it.Date.Day, 
                                                                 8, 0, 0);
-
-                                            return current += (entryTimeOfficial - it.EntryTime);
+                                            if (it.EntryTime < entryTimeOfficial)
+                                                return current += (entryTimeOfficial - it.EntryTime);
+                                            else
+                                                return current;
                                         });
         
         return total;
@@ -237,7 +245,10 @@ public class UtilsProcessing
                                                                 it.Date.Day, 
                                                                 18, 0, 0);
 
-                                            return current += (it.ExitTime - exitTimeOfficial);
+                                            if (it.ExitTime > exitTimeOfficial)
+                                                return current += (it.ExitTime - exitTimeOfficial);
+                                            else
+                                                return current;
                                         });
 
         return total;
