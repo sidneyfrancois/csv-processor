@@ -112,13 +112,12 @@ public class UtilsProcessing
         return totalRevenue;
     }
 
-    public TimeSpan GetMissingDays(List<Employee> employeeReport)
+    public int GetMissingDays(List<Employee> employeeReport)
     {
         List<DateTime> weekDaysOfMonth = GetWeekDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
         var missingDates = weekDaysOfMonth.Select(x=>x.Date).Except(employeeReport.Select(y=>y.Date));
-        var timeMissing = TimeSpan.FromHours(missingDates.Count() * 8);
 
-        return timeMissing;
+        return missingDates.Count();
     }
 
     public TimeSpan GetTotalDaysOfWork(List<Employee> employeeReport)
@@ -144,9 +143,9 @@ public class UtilsProcessing
     {
         var entryOwedDays = GetOwedHoursAfterEntry(employeeReport);
         var exitOwedDays = GetOwedHoursBegoreExit(employeeReport);
-        var missingDays = GetMissingDays(employeeReport);
+        var missingDaysInHoursOwed = TimeSpan.FromHours(GetMissingDays(employeeReport) * 8);
 
-        var totalOwedHours = entryOwedDays + exitOwedDays + missingDays;
+        var totalOwedHours = entryOwedDays + exitOwedDays + missingDaysInHoursOwed;
 
         return totalOwedHours;
     }
