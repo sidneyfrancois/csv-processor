@@ -189,6 +189,24 @@ public class UtilsProcessing
         return total;
     }
 
+    public TimeSpan GetOwedHoursBegoreExit(List<Employee> employeeReport)
+    {
+        var weekWorkingDaysReport = GetWeekWorkingDays(employeeReport);
+
+        var total= weekWorkingDaysReport.Aggregate(TimeSpan.Zero, (current, it) => 
+                                        {
+                                            DateTime exitTimeOfficial = new DateTime(
+                                                                it.Date.Year,
+                                                                it.Date.Month, 
+                                                                it.Date.Day, 
+                                                                18, 0, 0);
+
+                                            return current += (exitTimeOfficial - it.ExitTime);
+                                        });
+
+        return total;
+    }
+
     public TimeSpan GetExtraHoursBeforeEntry(List<Employee> employeeReport)
     {
         var weekWorkingDaysReport = GetWeekWorkingDays(employeeReport);
