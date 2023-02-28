@@ -131,6 +131,24 @@ public class UtilsProcessing
         return totalExtraHours; 
     }
 
+    public TimeSpan GetTotalWorkingHours(List<Employee> employeeReport)
+    {
+        var weekWorkingDaysReport = GetWeekWorkingDays(employeeReport);
+        var weekendWorkingDaysReport = GetWeekendWorkingDays(employeeReport);
+
+        var totalWeekWorkingHours = weekWorkingDaysReport.Aggregate(TimeSpan.Zero, (current, it) => 
+                                                            current += (it.ExitTime - it.EntryTime));
+
+        var totalWeekendWorkingHours = weekendWorkingDaysReport.Aggregate(TimeSpan.Zero, (current, it) => 
+                                                            current += (it.ExitTime - it.EntryTime));
+
+        var totalLunchHours = GetTotalLunchHours(employeeReport);
+
+        var totalWorkingHours = totalWeekWorkingHours + totalWeekendWorkingHours - totalLunchHours;
+
+        return totalWorkingHours;                                                            
+    }
+
     public List<Employee> GetWeekWorkingDays(List<Employee> employeeReport)
     {
         var weekDays = GetWeekDays(employeeReport[0].Date.Month, employeeReport[0].Date.Year);
