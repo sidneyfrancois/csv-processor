@@ -55,9 +55,14 @@ public class CSVProcessing
             
             var util = new UtilsProcessing();
             var completeList = util.GetListOfEmployesById(employees);
-            var jsonGenerated = util.GenerateCompleteReport(completeList, metaDataFromFile[0], metaDataFromFile[1], Convert.ToInt32(metaDataFromFile[2]));
+            var jsonGenerated = util.GenerateCompleteReport(completeList,
+                                        metaDataFromFile[0],
+                                        metaDataFromFile[1],
+                                        Convert.ToInt32(metaDataFromFile[2]));
 
-            File.WriteAllText(System.Environment.CurrentDirectory + @"\TestOutput\example.json", jsonGenerated);
+            File.WriteAllText(System.Environment.CurrentDirectory + 
+                                @"\TestOutput\" + $"{metaDataFromFile[0]}-{metaDataFromFile[1]}-{metaDataFromFile[2]}.json", 
+                                jsonGenerated);
             Console.WriteLine("Finished file: " + filename);
         }
     }
