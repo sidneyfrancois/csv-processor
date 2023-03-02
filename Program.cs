@@ -92,6 +92,10 @@ public class Company
 
 public class UtilsProcessing
 {
+    public double totalToPay = 0;
+    public double totalDisccounts = 0;
+    public double totalExtras = 0;
+
     public string GenerateCompleteReport(List<List<Employee>> listOfAllEmployeeReport)
     {
         var convertedListOfObjects = CreateListOfEmployeeJsonObject(listOfAllEmployeeReport);
@@ -100,9 +104,9 @@ public class UtilsProcessing
             Departament = "Empresa",
             Month = 2,
             Year = 2022,
-            TotalToPay = 2000,
-            TotalDisccounts = 4000,
-            TotalExtras = 1000,
+            TotalToPay = this.totalToPay,
+            TotalDisccounts = this.totalDisccounts,
+            TotalExtras = this.totalExtras,
             Employees = convertedListOfObjects
         };
         
@@ -192,6 +196,8 @@ public class UtilsProcessing
         var totalHoursOfWork = GetTotalDaysOfWork(employeeReport).TotalHours;
         var totalRevenue = totalHoursOfWork * employeeReport[0].HourValue;
 
+        this.totalToPay += totalRevenue;
+
         return totalRevenue;
     }
 
@@ -219,6 +225,8 @@ public class UtilsProcessing
 
         var totalExtraHours = entryExtraDays + exitExtraDays;
 
+        this.totalExtras += totalExtraHours.TotalHours * employeeReport[0].HourValue; 
+
         return totalExtraHours; 
     }
 
@@ -229,6 +237,8 @@ public class UtilsProcessing
         var missingDaysInHoursOwed = TimeSpan.FromHours(GetMissingDays(employeeReport) * 8);
 
         var totalOwedHours = entryOwedDays + exitOwedDays + missingDaysInHoursOwed;
+
+        this.totalDisccounts += totalOwedHours.TotalHours * employeeReport[0].HourValue;
 
         return totalOwedHours;
     }
