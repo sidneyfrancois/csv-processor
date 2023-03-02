@@ -84,7 +84,7 @@ public class EmployeeJson
 public class Company
 {
     public string Departament { get; set; }
-    public int Month { get; set; }
+    public string Month { get; set; }
     public int Year { get; set; }
     public double TotalToPay { get; set; }
     public double TotalDisccounts { get; set; }
@@ -99,14 +99,14 @@ public class UtilsProcessing
     public double totalDisccounts = 0;
     public double totalExtras = 0;
 
-    public string GenerateCompleteReport(List<List<Employee>> listOfAllEmployeeReport)
+    public string GenerateCompleteReport(List<List<Employee>> listOfAllEmployeeReport, string department, string month, int year)
     {
         var convertedListOfObjects = CreateListOfEmployeeJsonObject(listOfAllEmployeeReport);
         var company = new Company()
         {
-            Departament = "Empresa",
-            Month = 2,
-            Year = 2022,
+            Departament = department,
+            Month = month,
+            Year = year,
             TotalToPay = this.totalToPay,
             TotalDisccounts = this.totalDisccounts,
             TotalExtras = this.totalExtras,
