@@ -11,7 +11,15 @@ using System.Text;
 var mainProcessing = new CSVProcessing();
 var sw = new Stopwatch();
 
-string[] directoryFiles = Directory.GetFiles("TestInputT");
+Console.WriteLine("Enter input Path");
+var inputDirectory = @"" + Console.ReadLine();
+if (Directory.Exists(inputDirectory))
+{
+    var path = new DirectoryInfo(inputDirectory);
+    var files = path.GetFiles();
+}
+
+string[] directoryFiles = Directory.GetFiles(inputDirectory);
 
 sw.Start();
 await Parallel.ForEachAsync(directoryFiles, async (file, ct) =>
