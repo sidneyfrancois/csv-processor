@@ -80,6 +80,15 @@ public class EmployeeJson
 
 public class UtilsProcessing
 {
+    public string GenerateCompleteJsonEmployee(List<List<Employee>> listOfAllEmployeeReport)
+    {
+        var convertedListOfObjects = CreateListOfEmployeeJsonObject(listOfAllEmployeeReport);
+        var convertedListOfJsonEmployees = GenerateJsonListEmployee(convertedListOfObjects);
+
+        Console.WriteLine(convertedListOfJsonEmployees);
+        return convertedListOfJsonEmployees;
+    }
+
     public List<EmployeeJson> CreateListOfEmployeeJsonObject(List<List<Employee>> listOfAllEmployeeReport)
     {
         var listOfAllJsonEmployeeObjects = new List<EmployeeJson>();
