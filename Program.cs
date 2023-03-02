@@ -53,6 +53,11 @@ public class CSVProcessing
                 employees.Add(employee);
             }
             
+            var util = new UtilsProcessing();
+            var completeList = util.GetListOfEmployesById(employees);
+            var jsonGenerated = util.GenerateCompleteReport(completeList, metaDataFromFile[0], metaDataFromFile[1], Convert.ToInt32(metaDataFromFile[2]));
+
+            File.WriteAllText(System.Environment.CurrentDirectory + @"\TestOutput\example.json", jsonGenerated);
             Console.WriteLine("Finished file: " + filename);
         }
     }
@@ -116,7 +121,6 @@ public class UtilsProcessing
         var opt = new JsonSerializerOptions(){ WriteIndented=true };
         string completeJsonReport = JsonSerializer.Serialize<Company>(company, opt);
 
-        Console.WriteLine(completeJsonReport);
         return completeJsonReport;
     }
 
