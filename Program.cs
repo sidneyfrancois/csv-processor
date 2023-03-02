@@ -5,8 +5,6 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System.Diagnostics;
 using System.Text.Json;
-using System.Linq;
-using System.Text;
 
 var mainProcessing = new CSVProcessing();
 var sw = new Stopwatch();
