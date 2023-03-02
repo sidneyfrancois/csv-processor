@@ -68,8 +68,8 @@ public class EmployeeJson
     public string Name { get; set; }
     public int Id { get; set; }
     public double TotalRevenue { get; set; }
-    public DateTime ExtraHours { get; set; }
-    public DateTime OwedHours { get; set; }
+    public double ExtraHours { get; set; }
+    public double OwedHours { get; set; }
     public int MissingDays { get; set; }
     public int ExtraDays { get; set; }
     public int TotalDaysOfWork { get; set; }
@@ -77,6 +77,21 @@ public class EmployeeJson
 
 public class UtilsProcessing
 {
+    public EmployeeJson CreateJsonEmployeeObject(List<Employee> employeeReport)
+    {
+        var employeeJson = new EmployeeJson();
+        
+        employeeJson.Name = employeeReport[0].Name;
+        employeeJson.Id = employeeReport[0].Id;
+        employeeJson.TotalRevenue = GetTotalRevenue(employeeReport);
+        employeeJson.ExtraHours = GetTotalExtraHours(employeeReport).TotalHours;
+        employeeJson.OwedHours = GetTotalOwedHours(employeeReport).TotalHours;
+        employeeJson.MissingDays = GetMissingDays(employeeReport);
+        employeeJson.TotalDaysOfWork = GetTotalDaysOfWork(employeeReport).Days;
+
+        return employeeJson;
+    }
+
     public List<DateTime> GetWeekDays(int month, int year)
     {
         return Enumerable.Range(1, DateTime.DaysInMonth(year, month))
