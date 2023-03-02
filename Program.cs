@@ -19,12 +19,20 @@ if (Directory.Exists(inputDirectory))
     var files = path.GetFiles();
 }
 
+Console.WriteLine("Enter Output Path");
+var outputDirectory = @"" + Console.ReadLine();
+if (Directory.Exists(outputDirectory))
+{
+    var path = new DirectoryInfo(outputDirectory);
+    var files = path.GetFiles();
+}
+
 string[] directoryFiles = Directory.GetFiles(inputDirectory);
 
 sw.Start();
 await Parallel.ForEachAsync(directoryFiles, async (file, ct) =>
 {
-    await mainProcessing.CsvMapAndProcessing(file);
+    await mainProcessing.CsvMapAndProcessing(file, outputDirectory);
 });
 sw.Stop();
 
@@ -33,7 +41,7 @@ Console.WriteLine($"Memory Used: {Process.GetCurrentProcess().WorkingSet64 / 102
 
 public class CSVProcessing
 {
-    public async Task CsvMapAndProcessing(string filename)
+    public async Task CsvMapAndProcessing(string filename, string outputJsonDirectory)
     {
         var configCsvHelper = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
@@ -68,8 +76,8 @@ public class CSVProcessing
                                         metaDataFromFile[1],
                                         Convert.ToInt32(metaDataFromFile[2]));
 
-            File.WriteAllText(System.Environment.CurrentDirectory + 
-                                @"\TestOutput\" + $"{metaDataFromFile[0]}-{metaDataFromFile[1]}-{metaDataFromFile[2]}.json", 
+            File.WriteAllText(outputJsonDirectory + 
+                                @"\" + $"{metaDataFromFile[0]}-{metaDataFromFile[1]}-{metaDataFromFile[2]}.json", 
                                 jsonGenerated);
             Console.WriteLine("Finished file: " + filename);
         }
