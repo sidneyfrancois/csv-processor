@@ -49,7 +49,7 @@ public class CSVProcessing
                 var employee = csv.GetRecord<Employee>();
                 employees.Add(employee);
             }
-
+            
             Console.WriteLine("Finished file: " + filename);
         }
     }
@@ -86,6 +86,7 @@ public class Company
     public double TotalToPay { get; set; }
     public double TotalDisccounts { get; set; }
     public double TotalExtras { get; set; }
+    public List<EmployeeJson> Employees { get; set; }
 
 }
 
