@@ -1,10 +1,4 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
-using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
-using System.Diagnostics;
-using System.Text.Json;
+﻿using System.Diagnostics;
 
 
 var mainProcessing = new CSVProcessing();
