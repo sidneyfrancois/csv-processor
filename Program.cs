@@ -4,6 +4,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System.Diagnostics;
+using System.Text.Json;
 
 var mainProcessing = new CSVProcessing();
 var sw = new Stopwatch();
@@ -90,6 +91,12 @@ public class UtilsProcessing
         employeeJson.TotalDaysOfWork = GetTotalDaysOfWork(employeeReport).Days;
 
         return employeeJson;
+    }
+
+    public string GenerateJsonEmployee(EmployeeJson employeeJson)
+    {
+        string jsonEmployeeConverted = JsonSerializer.Serialize<EmployeeJson>(employeeJson);
+        return jsonEmployeeConverted;
     }
 
     public List<DateTime> GetWeekDays(int month, int year)
