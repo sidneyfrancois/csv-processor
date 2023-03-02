@@ -34,6 +34,9 @@ public class CSVProcessing
             IgnoreBlankLines = true,
         };
 
+        var nameOfCurrentFile = Path.GetFileNameWithoutExtension(filename);
+        string[] metaDataFromFile = nameOfCurrentFile.Split('-');
+
         var employees = new List<Employee>();
 
         using (var reader = new StreamReader(filename))
