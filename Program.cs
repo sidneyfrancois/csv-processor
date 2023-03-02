@@ -6,23 +6,24 @@ using CsvHelper.TypeConversion;
 using System.Diagnostics;
 using System.Text.Json;
 
+
 var mainProcessing = new CSVProcessing();
 var sw = new Stopwatch();
 
 Console.WriteLine("Enter input Path");
 var inputDirectory = @"" + Console.ReadLine();
-if (Directory.Exists(inputDirectory))
+while (!Directory.Exists(inputDirectory))
 {
-    var path = new DirectoryInfo(inputDirectory);
-    var files = path.GetFiles();
+    Console.WriteLine("Path does not exists. Please, enter again:");
+    inputDirectory = @"" + Console.ReadLine();
 }
 
 Console.WriteLine("Enter Output Path");
 var outputDirectory = @"" + Console.ReadLine();
-if (Directory.Exists(outputDirectory))
+while (!Directory.Exists(outputDirectory))
 {
-    var path = new DirectoryInfo(outputDirectory);
-    var files = path.GetFiles();
+    Console.WriteLine("Path does not exists. Please, enter again:");
+    outputDirectory = @"" + Console.ReadLine();
 }
 
 string[] directoryFiles = Directory.GetFiles(inputDirectory);
