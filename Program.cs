@@ -95,7 +95,10 @@ public class UtilsProcessing
 
     public string GenerateJsonEmployee(EmployeeJson employeeJson)
     {
-        string jsonEmployeeConverted = JsonSerializer.Serialize<EmployeeJson>(employeeJson);
+        var opt = new JsonSerializerOptions(){ WriteIndented=true };
+        string jsonEmployeeConverted = JsonSerializer.Serialize<EmployeeJson>(employeeJson, opt);
+
+        Console.WriteLine(jsonEmployeeConverted);
         return jsonEmployeeConverted;
     }
 
