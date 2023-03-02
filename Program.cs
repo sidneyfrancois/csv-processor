@@ -92,6 +92,19 @@ public class UtilsProcessing
         return listOfAllJsonEmployeeObjects;
     }
 
+    public List<string> GenerateJsonListEmployee(List<EmployeeJson> listOfAllJsonEmployeeObjects)
+    {
+        var listConverted = new List<string>();
+
+        foreach (var jsonEmployeeObject in listOfAllJsonEmployeeObjects)
+        {
+            var converted = GenerateJsonEmployee(jsonEmployeeObject);
+            listConverted.Add(converted);
+        }
+
+        return listConverted;
+    }
+
     public EmployeeJson CreateJsonEmployeeObject(List<Employee> employeeReport)
     {
         var employeeJson = new EmployeeJson();
@@ -112,7 +125,6 @@ public class UtilsProcessing
         var opt = new JsonSerializerOptions(){ WriteIndented=true };
         string jsonEmployeeConverted = JsonSerializer.Serialize<EmployeeJson>(employeeJson, opt);
 
-        Console.WriteLine(jsonEmployeeConverted);
         return jsonEmployeeConverted;
     }
 
