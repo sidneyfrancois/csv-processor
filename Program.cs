@@ -92,13 +92,33 @@ public class Company
 
 public class UtilsProcessing
 {
+    public string GenerateCompleteReport(List<List<Employee>> listOfAllEmployeeReport)
+    {
+        var convertedListOfObjects = CreateListOfEmployeeJsonObject(listOfAllEmployeeReport);
+        var company = new Company()
+        {
+            Departament = "Empresa",
+            Month = 2,
+            Year = 2022,
+            TotalToPay = 2000,
+            TotalDisccounts = 4000,
+            TotalExtras = 1000,
+            Employees = convertedListOfObjects
+        };
+        
+        var opt = new JsonSerializerOptions(){ WriteIndented=true };
+        string completeJsonReport = JsonSerializer.Serialize<Company>(company, opt);
+
+        Console.WriteLine(completeJsonReport);
+        return completeJsonReport;
+    }
+
     public string GenerateCompleteJsonEmployee(List<List<Employee>> listOfAllEmployeeReport)
     {
         var convertedListOfObjects = CreateListOfEmployeeJsonObject(listOfAllEmployeeReport);
 
         var opt = new JsonSerializerOptions(){ WriteIndented=true };
         string employeesJson = JsonSerializer.Serialize<List<EmployeeJson>>(convertedListOfObjects, opt);
-
 
         Console.WriteLine(employeesJson);
         return employeesJson;
