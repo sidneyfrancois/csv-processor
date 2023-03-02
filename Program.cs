@@ -78,15 +78,29 @@ public class EmployeeJson
     public int TotalDaysOfWork { get; set; }
 }
 
+public class Company
+{
+    public string Departament { get; set; }
+    public int Month { get; set; }
+    public int Year { get; set; }
+    public double TotalToPay { get; set; }
+    public double TotalDisccounts { get; set; }
+    public double TotalExtras { get; set; }
+
+}
+
 public class UtilsProcessing
 {
     public string GenerateCompleteJsonEmployee(List<List<Employee>> listOfAllEmployeeReport)
     {
         var convertedListOfObjects = CreateListOfEmployeeJsonObject(listOfAllEmployeeReport);
-        var convertedListOfJsonEmployees = GenerateJsonListEmployee(convertedListOfObjects);
 
-        Console.WriteLine(convertedListOfJsonEmployees);
-        return convertedListOfJsonEmployees;
+        var opt = new JsonSerializerOptions(){ WriteIndented=true };
+        string employeesJson = JsonSerializer.Serialize<List<EmployeeJson>>(convertedListOfObjects, opt);
+
+
+        Console.WriteLine(employeesJson);
+        return employeesJson;
     }
 
     public List<EmployeeJson> CreateListOfEmployeeJsonObject(List<List<Employee>> listOfAllEmployeeReport)
@@ -100,19 +114,6 @@ public class UtilsProcessing
         }
 
         return listOfAllJsonEmployeeObjects;
-    }
-
-    public string GenerateJsonListEmployee(List<EmployeeJson> listOfAllJsonEmployeeObjects)
-    {
-        var listConverted = new System.Text.StringBuilder();
-
-        foreach (var jsonEmployeeObject in listOfAllJsonEmployeeObjects)
-        {
-            var converted = GenerateJsonEmployee(jsonEmployeeObject);
-            listConverted.AppendLine(converted);
-        }
-
-        return listConverted.ToString();
     }
 
     public EmployeeJson CreateJsonEmployeeObject(List<Employee> employeeReport)
