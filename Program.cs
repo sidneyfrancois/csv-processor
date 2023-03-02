@@ -5,6 +5,7 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System.Diagnostics;
 using System.Text.Json;
+using System.Linq;
 
 var mainProcessing = new CSVProcessing();
 var sw = new Stopwatch();
@@ -78,6 +79,19 @@ public class EmployeeJson
 
 public class UtilsProcessing
 {
+    public List<EmployeeJson> CreateListOfEmployeeJsonObject(List<List<Employee>> listOfAllEmployeeReport)
+    {
+        var listOfAllJsonEmployeeObjects = new List<EmployeeJson>();
+
+        foreach (var employeeReport in listOfAllEmployeeReport)
+        {
+            var converted = CreateJsonEmployeeObject(employeeReport);
+            listOfAllJsonEmployeeObjects.Add(converted);
+        }
+
+        return listOfAllJsonEmployeeObjects;
+    }
+
     public EmployeeJson CreateJsonEmployeeObject(List<Employee> employeeReport)
     {
         var employeeJson = new EmployeeJson();
