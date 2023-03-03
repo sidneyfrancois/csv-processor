@@ -8,15 +8,6 @@ height="140" align="right">
 
 # Projeto de teste técnico (Auvo Tecnologia) :computer:
 
-
-
-Este projet teve como prioridade:
-
-- Organização de código
-- Busca de maior performance
-- Demonstrar domínio intermediário na linguagem (C#)
-- Organização de commits (seguindo o padrão "conventional commits")
-
 O que foi finalizado até o momento:
 - [x] Processamento e mapeamento dos arquivos CSV
 - [x] Geração do arquivo JSON com base nos dados do arquivo CSV
@@ -24,6 +15,13 @@ O que foi finalizado até o momento:
 - [x] Uso de assincronismo (evitar I/O blocking)
 - [ ] Criação de testes unitários
 - [ ] Criação de componente plugavel
+
+Este projeto teve como prioridade:
+
+- Organização de código
+- Busca de maior performance
+- Demonstrar domínio intermediário na linguagem (C#)
+- Organização de commits (seguindo o padrão "conventional commits")
 
 # Regras de Negócio
 
