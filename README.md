@@ -21,7 +21,7 @@ O que foi finalizado até o momento:
 - [x] Processamento e mapeamento dos arquivos CSV
 - [x] Geração do arquivo JSON com base nos dados do arquivo CSV
 - [x] Aplicação de paralelismo
-- [x] Uso de assincronismo (I/O blocking)
+- [x] Uso de assincronismo (evitar I/O blocking)
 - [ ] Criação de testes unitários
 - [ ] Criação de componente plugavel
 
@@ -79,3 +79,9 @@ O que foi finalizado até o momento:
     Time: 573 ms
     Memory Used: 36 mb
     ```
+# Melhorias
+
+- Diminuir o número de objetos e listas alocados durante o processamento.
+- Diminuir redundancia na chamada das funções durante a coleta de dados para processar o json.
+- Inserção de testes específicos para performance.
+- unir todos os objetos json num só, json como todos os departamentos e seus respectivos funcionários.
