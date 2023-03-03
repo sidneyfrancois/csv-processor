@@ -24,3 +24,20 @@ O que foi finalizado até o momento:
 - [x] Uso de assincronismo (I/O blocking)
 - [ ] Criação de testes unitários
 - [ ] Criação de componente plugavel
+
+# Regras de Negócio
+
+- Departamento
+    - Total a Pagar: *Número total de horas * valor hora do funcionário.*
+    - Total Descontos: *Número de horas debito * valor hora do funcionário.*
+    - Total Extras: *Número de horas extras * valor hora do funcionário.*
+- Funcionário
+    - Total a Receber: *Total de horas trabalhadas * valor hora do funcionário*.
+    - Horas Extras: O funcionário entrando antes ou depois do horário de trabalho oficial já é caracterizado como hora extra: Exemplos: funcionário deve entrar 8:00 mas entrou 6:00, serão contabilizadas 2 horas extras, funcinário saí oficialmente às 18:00 mas fica até 19:00, serão contabilizadas 1 hora extra.
+    - Horas Débito: O funcionário entrando depois ou antes do horário de trabalho oficial já é caracterizado como hora débito: Exemplos: funcionário deve entrar 8:00 mas entrou 9:00, serão contabilizadas 1 hora débito, funcinário saí oficialmente às 18:00 mas saiu às 16:00, serão contabilizadas 2 horas débito.
+    - Dias Falta: Se o funcionário faltar em qualquer dia da semana já será contabilizado como um dia de falta. Cada dia de falta corresponde a 8 horas de débito. (considerando que o funcionário tenha que trabalhar 8 horas por dia)
+    - Dias Extra: Será contabilizado a partir do número total de horas extras, se o número de horas extras ultrapassar 24h será contabilizado como 1 dia extra. 
+    - Dias Trabalhados: Será contabilizado a partir do número total de horas trabalhadas, se o número de horas trabalhadas ultrapassar 24h será contabilizado como 1 dia de trabalho. Exemplo: funcionário tem o total de 80 horas trabalhadas, isso será contabilizado como 3 dias trabalhados (mais 8 horas).
+    
+    *Detalhe: O funcionário trabalhando durante o fim de semana, durante qualquer horário, já terá as suas horas trabalhadas contabilizadas como hora extra. Exemplo: se o funcionário trabalhou no sábado das 8:00 até 12:00, serão contabilizadas 4 horas extras.*
+
