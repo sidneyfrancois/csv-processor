@@ -49,4 +49,33 @@ O que foi finalizado até o momento:
 
 *Detalhe: Para este projeto foi utilizado a biblioteca CSVHelper. Algumas funcionalidades como o ReadAsync não estão propriamente documentadas e por isso foi necessário verificar o código fonte do projeto.*
 
+# Utilização
 
+1. fazer o download do código fonte deste projeto:
+    ```
+    git clone https://github.com/sidneyfrancois/csv-processor.git
+    ```
+2. Entrar dentro da pasta do projeto.
+    ```
+    cd csv-processor
+    ```
+3. Executar o projeto:
+    ```
+    dotnet run
+    ```
+4. O primeiro input é necessário para definir o caminho completo da pasta aonde os arquivos csv se encontram. Exemplo:
+    ```
+    Enter input Path
+    C:\Users\nome_do_usuario\Documents\Auvo\csv-processor\PastaAondeEstaoOsArquivosCSV
+    ```
+5. O segundo input é necessário para definir o caminho completo da pasta aonde os arquivos json processados serão salvos. Exemplo:
+    ```
+    Enter Output Path
+    C:\Users\nome_do_usuario\Documents\Auvo\csv-processor\PastaParaSalvarJSONs
+    ```
+6. O processamento será realizado e todos os arquivos json serão salvos na pasta específicada.
+7. Será exibido o total de templo (em milissegundos) gasto no processamento e o total de memória utilizada.
+    ```
+    Time: 573 ms
+    Memory Used: 36 mb
+    ```
