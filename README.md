@@ -41,3 +41,12 @@ O que foi finalizado até o momento:
     
     *Detalhe: O funcionário trabalhando durante o fim de semana, durante qualquer horário, já terá as suas horas trabalhadas contabilizadas como hora extra. Exemplo: se o funcionário trabalhou no sábado das 8:00 até 12:00, serão contabilizadas 4 horas extras.*
 
+# Uso de Paralelismo e Assincronismo
+
+- Paralelismo: Para este projeto foi utilizado o TPL (Task Parallel Library) nativo do C#, recurso que permite utilizar o laço *ForEachAsync* para executar instruções dentro do laço de forma paralela e suportando metódo assíncrono.
+
+- Assincronismo: A função *CsvMapAndProcessing* da classe *CSVProcessing* faz uso do de Streaming, para leitura dos arquivos csv, isso evita o uso excessivo de memória pois evita que os dados do arquivo csv sejam salvos primeiro em alguma variável local antes de serem processadas. A leitura dos arquivos é feita de maneira assíncrona através da função *ReadAsync*, evitando gargalo e aumentando a velocidade de processamento.
+
+*Detalhe: Para este projeto foi utilizado a biblioteca CSVHelper. Algumas funcionalidades como o ReadAsync não estão propriamente documentadas e por isso foi necessário verificar o código fonte do projeto.*
+
+
